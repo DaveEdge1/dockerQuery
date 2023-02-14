@@ -1,0 +1,31 @@
+#######################################################
+Build shiny app
+
+Add Dockerfile within directory (C:\Users\dce25\Documents\R Projects\createDockerfile.R)
+
+#######################################################
+Build container image:
+
+in command prompt:
+(navigate to app directory)
+docker build .
+
+#######################################################
+Push to Docker Hub:
+
+docker tag my-image:[tag] username/my-repo:[tag]
+(docker tag sha256:28cfdeed74ec53c2e8a5b4844eaf7857ac5a1deec2d11cc9e872c8587a9e708d davidedge/lipd_webapps:shinyToy)
+
+docker push username/my-repo:[tag]
+(docker push davidedge/lipd_webapps:shinyToy)
+
+#######################################################
+run on nau server
+
+ssh to [user]@webapps-dev.ac.nau.edu
+enter nau password
+
+ssh to cefns_lipd@localhost
+
+podman run --name [containerName] -d -p 8000:80 [username/my-repo:[tag]]
+(podman run --name shinyToy5 -d -p 9011:80 davidedge/lipd_webapps:shinyToy)
